@@ -1,0 +1,2 @@
+class DummyCms::Page
+end
