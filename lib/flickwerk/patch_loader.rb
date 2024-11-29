@@ -17,7 +17,7 @@ module Flickwerk
         matches = File.read(patch_path).scan(DECORATED_CLASS_PATTERN).flatten
 
         # Don't do a thing if there's no prepending.
-        next unless matches.present?
+        raise Flickwerk::Error, "No classes prepended in #{patch_path}" if matches.empty?
 
         # For each unique match, make sure we load the decorator when the base class is loaded
         matches.uniq.each do |decorated_class|
