@@ -3,6 +3,12 @@
 require "flickwerk/patch_loader"
 
 class Flickwerk::Railtie < Rails::Railtie
+  initializer "flickwerk.add_paths", before: :set_autoload_paths do |app|
+    Flickwerk.patch_paths.each do |path|
+      app.config.autoload_paths << path
+    end
+  end
+
   initializer "flickwerk.add_patches", after: :setup_main_autoloader do
     Flickwerk.patch_paths.each do |path|
       Flickwerk::PatchLoader.new(path).call

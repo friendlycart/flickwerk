@@ -11,6 +11,8 @@ module Flickwerk
   self.patch_paths = []
 
   def self.included(engine)
-    patch_paths << engine.root.join("app/patches")
+    engine.root.glob("app/patches/*").each do |path|
+      engine.patch_paths << path
+    end
   end
 end

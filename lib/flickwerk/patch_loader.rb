@@ -2,7 +2,7 @@
 
 module Flickwerk
   class PatchLoader
-    DECORATED_CLASS_PATTERN = /(?<decorated_class>[A-Z][a-zA-Z:]+)\.prepend[\s(]/
+    DECORATED_CLASS_PATTERN = /(?<decorated_class>[\w.:]+)\.prepend[\s(]/
 
     attr_reader :path, :autoloader
 
@@ -27,7 +27,7 @@ module Flickwerk
           Rails.logger.debug("Preparing to autoload #{decorated_class} with #{decorator_constant}")
           # If the class has not been loaded, we can add a hook to load the decorator when it is.
           # Multiple hooks are no problem, as long as all decorators are namespaced appropriately.
-          autoloader.on_load(decorated_class) do |base|
+          autoloader.on_load(decorated_class.gsub(/^::/, "")) do |base|
             Rails.logger.debug("Loading #{decorator_constant} in order to modify #{base}")
             decorator_constant.constantize
           end
