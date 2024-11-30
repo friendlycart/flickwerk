@@ -3,5 +3,5 @@ module PagePatch
     "Changed from Host app"
   end
 
-  DummyCms::Page.prepend(self)
+  ::DummyCms::Page.prepend(self)
 end
