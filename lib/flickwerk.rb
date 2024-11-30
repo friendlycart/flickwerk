@@ -7,12 +7,16 @@ require "flickwerk/railtie" if defined?(Rails)
 module Flickwerk
   class Error < StandardError; end
 
-  mattr_accessor :patch_paths
-  self.patch_paths = []
+  mattr_accessor :patch_paths, default: []
+  mattr_accessor :patches, default: Hash.new([])
 
   def self.included(engine)
     engine.root.glob("app/patches/*").each do |path|
       engine.patch_paths << path
     end
+  end
+
+  def self.patch(class_name, with:)
+    patches[class_name] += [with]
   end
 end

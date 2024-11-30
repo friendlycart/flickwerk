@@ -56,4 +56,9 @@ class ZeitwerkIntegrationTest < ActiveSupport::TestCase
     assert DummyBlog::Post.new.respond_to?(:title)
     assert_equal "Edited from CMS", DummyBlog::Post.new.title
   end
+
+  test "manually specifying a patch" do
+    Flickwerk.patch("User", with: "UserPatch")
+    assert_equal ["UserPatch"], Flickwerk.patches["User"]
+  end
 end
