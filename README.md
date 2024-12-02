@@ -129,7 +129,7 @@ class MyGem::Engine < Rails::Engine
   include Flickwerk
 
   initializer "my_gem.patch_user_class", before: "flickwerk.add_patches" do
-    Flickwerk.patch(Spree.class_variable_get(:@@user_class), "MyGem::UserClassPatch"
+    Flickwerk.patch(Spree.class_variable_get(:@@user_class), "MyGem::UserClassPatch")
   end
 end
 ```
