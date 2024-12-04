@@ -10,10 +10,13 @@ class Flickwerk::Railtie < Rails::Railtie
     end
   end
 
-  initializer "flickwerk.add_patches", after: :setup_main_autoloader do
+  initializer "flickwerk.find_patches", after: :setup_main_autoloader do
     Flickwerk.patch_paths.each do |path|
       Flickwerk::PatchFinder.new(path).call
     end
+  end
+
+  initializer "flickwerk.add_patches", after: "flickwerk.find_patches" do
     Flickwerk::PatchLoader.call
   end
 end
