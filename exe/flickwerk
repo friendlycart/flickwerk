@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "flickwerk"
+require "flickwerk/patchify"
+
+case ARGV[0]
+when "patchify"
+  Flickwerk::Patchify.call(ARGV[1])
+else
+  raise ArgumentError, "Unknown command #{ARGV[0]}. Please use `patchify`."
+end

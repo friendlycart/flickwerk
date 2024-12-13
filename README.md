@@ -175,6 +175,26 @@ class MyGem::Engine
 end
 ```
 
+## Transitioning from app/decorators to app/patches
+
+Due to the Rails Engine documentation telling people to put their patches in either `app/decorators` or `app/overrides`, that's where a lot of patches currently live. Flickwerk provides a script to help you move your "decorators" or "overrides" to `app/patches` and do the necessary changes in terms of file and constant names.
+
+If your patches currently live in `app/decorators`, run
+
+```sh
+bundle exec flickwerk patchify
+```
+
+Flickwerk will now move your decorators and rename them.
+
+If your patches currently live in `app/overrides`, use an argument:
+
+```sh
+bundle exec flickwerk patchify overrides
+```
+
+Now, run your tests and make sure your patches comply with Flickwerk's requirements.
+
 ## Considerations
 
 ### Aren't patches bad?
