@@ -11,7 +11,7 @@ class Flickwerk::Railtie < Rails::Railtie
   end
 
   initializer "flickwerk.find_patches" do |app|
-    app.config.to_prepare do
+    app.reloader.to_prepare do
       Flickwerk.patch_paths.each do |path|
         Flickwerk::PatchFinder.new(path).call
       end
@@ -19,7 +19,7 @@ class Flickwerk::Railtie < Rails::Railtie
   end
 
   initializer "flickwerk.add_patches", after: "flickwerk.find_patches" do |app|
-    app.config.to_prepare do
+    app.reloader.to_prepare do
       Flickwerk::PatchLoader.call
     end
   end
