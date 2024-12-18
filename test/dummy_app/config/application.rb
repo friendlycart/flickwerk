@@ -2,9 +2,14 @@ require "rails"
 require "flickwerk/railtie"
 
 module DummyApp
+  def self.user_class
+    User
+  end
+
   class Application < ::Rails::Application
     config.root = File.expand_path("../", __dir__)
     include Flickwerk
+    Flickwerk.aliases["DummyApp.user_class"] = "User"
     config.autoload_paths << File.expand_path("../app/models", __dir__)
 
     config.load_defaults("#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}")

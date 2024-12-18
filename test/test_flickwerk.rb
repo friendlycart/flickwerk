@@ -61,4 +61,12 @@ class ZeitwerkIntegrationTest < ActiveSupport::TestCase
     Flickwerk.patch("User", with: "UserPatch")
     assert_equal ["UserPatch"], Flickwerk.patches["User"]
   end
+
+  test "acronyms still work" do
+    boot
+
+    assert UI::Button
+    assert UI::Button.new.respond_to?(:click)
+    assert_equal "Button clicked!", UI::Button.new.click
+  end
 end

@@ -7,5 +7,5 @@ module UserPatch
     26
   end
 
-  User.prepend(self)
+  DummyApp.user_class.prepend(self)
 end
