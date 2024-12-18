@@ -9,6 +9,7 @@ module Flickwerk
 
   mattr_accessor :patch_paths, default: []
   mattr_accessor :patches, default: Hash.new([])
+  mattr_accessor :aliases, default: {}
 
   def self.included(engine)
     engine.root.glob("app/patches/*").each do |path|
@@ -17,6 +18,7 @@ module Flickwerk
   end
 
   def self.patch(class_name, with:)
-    patches[class_name] += [with]
+    klass_name = aliases[class_name] || class_name
+    patches[klass_name] += [with]
   end
 end
