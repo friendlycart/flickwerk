@@ -5,17 +5,15 @@ require "active_support/core_ext/string"
 
 module Flickwerk
   class Patchify
-    PATCHES_DIR = "app/patches"
-    def self.call(directory_name)
-      directory_name ||= "decorators"
-      source_dir = "app/#{directory_name}"
+    def self.call(decorator_dir:, patches_dir:)
+      directory_name = decorator_dir.split("/").last
       suffix = directory_name.singularize
       constant = suffix.camelize
 
-      Dir.glob("#{source_dir}/**/*_#{suffix}.rb").each do |file|
-        relative_path = file.sub(/^#{source_dir}\//, "")
+      Dir.glob("#{decorator_dir}/**/*_#{suffix}.rb").each do |file|
+        relative_path = file.sub(/^#{decorator_dir}\//, "")
         target_file = relative_path.sub("_#{suffix}.rb", "_patch.rb")
-        target_path = File.join(PATCHES_DIR, File.dirname(relative_path))
+        target_path = File.join(patches_dir, File.dirname(relative_path))
 
         # Create target directory if it doesn't exist
         FileUtils.mkdir_p(target_path)

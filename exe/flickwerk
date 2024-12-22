@@ -7,7 +7,7 @@ require "flickwerk/patchify"
 
 case ARGV[0]
 when "patchify"
-  Flickwerk::Patchify.call(ARGV[1])
+  Flickwerk::Patchify.call(decorator_dir: ARGV[1] || "app/decorators", patches_dir: ARGV[2] || "app/patches")
 else
   raise ArgumentError, "Unknown command #{ARGV[0]}. Please use `patchify`."
 end
