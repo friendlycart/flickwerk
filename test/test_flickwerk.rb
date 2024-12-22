@@ -69,4 +69,11 @@ class ZeitwerkIntegrationTest < ActiveSupport::TestCase
     assert UI::Button.new.respond_to?(:click)
     assert_equal "Button clicked!", UI::Button.new.click
   end
+
+  test "singleton classes can be patched" do
+    boot
+
+    assert User
+    assert "The outer rim", User.address
+  end
 end
