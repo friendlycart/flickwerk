@@ -2,7 +2,7 @@
 
 module Flickwerk
   class PatchFinder
-    DECORATED_CLASS_PATTERN = /(?:::)?(?<decorated_class>[\w.:]+)\.prepend[\s(]/
+    DECORATED_CLASS_PATTERN = /(?:::)?(?<decorated_class>[\w.:]+?)(?:\.singleton_class)?\.prepend[\s(]/
 
     attr_reader :path, :autoloader
 
