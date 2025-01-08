@@ -190,7 +190,13 @@ Flickwerk will now move your decorators and rename them.
 If your patches currently live in `app/overrides`, use an argument:
 
 ```sh
-bundle exec flickwerk patchify overrides
+bundle exec flickwerk patchify app/overrides
+```
+
+If you have patches in `lib`, they can be moved to `lib/patches`:
+
+```sh
+bundle exec flickwerk patchify lib/decorators lib/patches
 ```
 
 Now, run your tests and make sure your patches comply with Flickwerk's requirements.
