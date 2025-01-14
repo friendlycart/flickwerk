@@ -2,6 +2,7 @@
 
 require "flickwerk/patch_finder"
 require "flickwerk/patch_loader"
+require "rails/railtie"
 
 class Flickwerk::Railtie < Rails::Railtie
   initializer "flickwerk.add_paths", before: :set_autoload_paths do |app|
