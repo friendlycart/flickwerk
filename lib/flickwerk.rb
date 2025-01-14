@@ -13,7 +13,7 @@ module Flickwerk
 
   def self.included(engine)
     engine.root.glob("app/patches/*").each do |path|
-      engine.patch_paths << path
+      Flickwerk.patch_paths << path
     end
   end
 
