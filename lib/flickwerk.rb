@@ -12,9 +12,9 @@ module Flickwerk
   mattr_accessor :aliases, default: {}
 
   def self.included(engine)
-    engine.root.glob("app/patches/*").each do |path|
-      Flickwerk.patch_paths << path
-    end
+    engine_patch_paths = engine.root.glob("app/patches/*")
+    engine.config.autoload_paths += engine_patch_paths
+    Flickwerk.patch_paths += engine_patch_paths
   end
 
   def self.patch(class_name, with:)
