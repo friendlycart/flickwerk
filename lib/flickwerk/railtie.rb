@@ -5,7 +5,7 @@ require "flickwerk/patch_loader"
 require "rails/railtie"
 
 class Flickwerk::Railtie < Rails::Railtie
-  initializer "flickwerk.find_patches" do |app|
+  initializer "flickwerk.find_patches", before: :eager_load! do |app|
     app.reloader.to_prepare do
       Flickwerk.patch_paths.each do |path|
         Flickwerk::PatchFinder.new(path).call
