@@ -8,7 +8,7 @@ module Flickwerk
   class Error < StandardError; end
 
   mattr_accessor :patch_paths, default: []
-  mattr_accessor :patches, default: Hash.new([])
+  mattr_accessor :patches, default: Hash.new { [] }
   mattr_accessor :aliases, default: {}
 
   def self.included(engine)

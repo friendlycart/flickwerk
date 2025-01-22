@@ -76,4 +76,13 @@ class ZeitwerkIntegrationTest < ActiveSupport::TestCase
     assert User
     assert "The outer rim", User.address
   end
+
+  test "prepended base class can be prepended" do
+    require "dummy_cms"
+
+    boot
+
+    assert DummyCms::Page
+    assert_equal [], Flickwerk.patches["base"]
+  end
 end

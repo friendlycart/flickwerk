@@ -7,4 +7,4 @@ Minitest::TestTask.create
 
 require "standard/rake"
 
-task default: %i[test standard]
+task default: %i[test]
