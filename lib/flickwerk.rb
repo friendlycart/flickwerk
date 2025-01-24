@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "flickwerk/version"
+require "active_support"
 require "active_support/core_ext/module/attribute_accessors"
-require "flickwerk/railtie" if defined?(Rails)
+require "flickwerk/railtie"
 
 module Flickwerk
   class Error < StandardError; end
