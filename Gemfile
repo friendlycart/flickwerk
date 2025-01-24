@@ -11,4 +11,13 @@ gem "minitest", "~> 5.16"
 
 gem "standard", "~> 1.3"
 
-gem "railties", "~> #{ENV.fetch("RAILS_VERSION", "8.0")}.0"
+rails_version = ENV.fetch("RAILS_VERSION", "8.0")
+
+# concurrent-ruby v1.3.5 has removed the dependency on logger,
+# affecting Rails 7.0.
+# https://github.com/rails/rails/pull/54264
+if rails_version == "7.0"
+  gem "concurrent-ruby", "< 1.3.5"
+end
+
+gem "railties", "~> #{rails_version}.0"
