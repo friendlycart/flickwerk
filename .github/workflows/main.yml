@@ -9,12 +9,24 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    name: Test with Ruby ${{ matrix.ruby }}
+    runs-on: ubuntu-24.04
+    name: Test with Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}
     strategy:
       matrix:
         ruby:
-          - '3.2.6'
+          - '3.2'
+          - '3.3'
+          - '3.4'
+        rails:
+          - '7.0'
+          - '7.1'
+          - '7.2'
+          - '8.0'
+        exclude:
+          - ruby: '3.4'
+            rails: '7.0'
+    env:
+      RAILS_VERSION: ${{ matrix.rails }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby
@@ -26,12 +38,14 @@ jobs:
         run: bundle exec rake
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     name: Lint with Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
-          - '3.2.6'
+          - '3.2'
+          - '3.3'
+          - '3.4'
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby
