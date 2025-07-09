@@ -1,6 +1,6 @@
 # Flickwerk
 
-A Railtie for loading autoloadable patches using Zeitwerk. This speeds up Rails bootup and reload time considerable, because other solutions out there load the patches and the associated classes on application bootup, and this gem defers loading the patches until the patched classes are autoloaded.
+A Railtie for loading autoloadable patches using Zeitwerk. This speeds up Rails bootup and reload time considerably, because other solutions out there load the patches and the associated classes on application bootup, and this gem defers loading the patches until the patched classes are autoloaded.
 
 ## Installation
 
