@@ -80,6 +80,10 @@ module MyEngine::SpreeOrderPatch
 end
 ```
 
+### Solidus Extensions
+
+If you are maintaining a [Solidus extension](https://github.com/solidusio-contrib/) there is no need to `include Flickwerk`. You can simply update to `"solidus_support", [">= 0.14.1", "< 1.0"]` and make sure to `include SolidusSupport::EngineExtensions` in your `engine.rb` (which should already be the case anyway).
+
 ### Using `super`
 
 Sometimes you want to modify the original result of a method dynamically rather than just overwrite it. Because your patches use `Module.prepend`, this can be easily accomplished, even if you want to modify class methods:
