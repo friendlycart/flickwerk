@@ -11,6 +11,8 @@ module Flickwerk
   mattr_accessor :patch_paths, default: []
   mattr_accessor :patches, default: Hash.new { [] }
   mattr_accessor :aliases, default: {}
+  mattr_accessor :verbose, default: ENV.fetch("FLICKWERK_VERBOSE", "false") == "true"
+  mattr_accessor :logger, default: Logger.new($stdout)
 
   def self.included(engine)
     engine_patch_paths = engine.root.glob("app/patches/*")
@@ -21,5 +23,9 @@ module Flickwerk
   def self.patch(class_name, with:)
     klass_name = aliases[class_name] || class_name
     patches[klass_name] += [with]
+  end
+
+  def self.log(message)
+    logger.add(Logger::INFO, message, "[flickwerk]")
   end
 end

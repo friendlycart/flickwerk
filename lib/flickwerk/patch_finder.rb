@@ -23,6 +23,9 @@ module Flickwerk
         matches.uniq.each do |decorated_class|
           # Zeitwerk tells us which constant it expects a file to provide.
           decorator_constant = autoloader.cpath_expected_at(patch_path)
+          if Flickwerk.verbose
+            Flickwerk.log("Found patch for #{decorated_class}: #{decorator_constant} at #{patch_path}")
+          end
           Flickwerk.patch(decorated_class, with: decorator_constant)
         end
       end

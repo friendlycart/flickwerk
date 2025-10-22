@@ -53,6 +53,9 @@ end
 
 If you application now has a class `Goodie` with a foreign key to the `spree_orders` table, you can check on those goodies using the familiar `order.goodies` in your application.
 
+### Debugging
+
+In order to debug if a patch was found and if it actually loaded, you can enable verbose mode by either setting `FLICKWERK_VERBOSE=true` as ENV var or by enabling it with `Flickwerk.verbose = true` (ie, in an initializer).
 
 ### Using Flickwerk in Engines
 
